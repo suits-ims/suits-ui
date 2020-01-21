@@ -1,0 +1,23 @@
+.stub-container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  place-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.stub-title {
+  font-size: 112px;
+  text-align: center;
+  line-height: 1;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.stub-message {
+  color: rgba(0, 0, 0, .54);
+  font-size: 24px;
+  text-align: center;
+}
