@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {ApplicationRef, DoBootstrap, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -12,12 +12,15 @@ import {CandidatesModule} from "./modules/candidates/candidates.module";
 import {CandidateListComponent} from "./modules/candidates/candidate-list/candidate-list.component";
 import {StubComponent} from "./core/stub/stub.component";
 import {CandidateInfoComponent} from "./modules/candidates/candidate-info/candidate-info.component";
+import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 
+const keycloakService = new KeycloakService();
 
 const appRoutes: Routes = [
   {
     path: 'candidates',
     component: CandidateListComponent,
+    data: {roles: ['manager']},
     children: [
       {path: '', redirectTo: 'overview', pathMatch: 'full'},
       {path: 'overview', component: StubComponent},
@@ -26,6 +29,7 @@ const appRoutes: Routes = [
   },
   {path: '**', component: StubComponent}
 ];
+
 
 @NgModule({
   declarations: [
@@ -39,13 +43,32 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatListModule,
     CandidatesModule,
+    KeycloakAngularModule,
     RouterModule.forRoot(
       appRoutes,
       {enableTracing: true}
     )
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: KeycloakService,
+      useValue: keycloakService
+    }
+  ]
+  // bootstrap: [AppComponent]
 })
-export class AppModule {
+export class AppModule implements DoBootstrap {
+
+  ngDoBootstrap(appRef: ApplicationRef) {
+    console.log('[ngDoBootstrap] bootstrap app');
+
+    keycloakService
+      .init()
+      .then(() => {
+        console.log('[ngDoBootstrap] bootstrap app');
+
+        appRef.bootstrap(AppComponent);
+      })
+      .catch(error => console.error('[ngDoBootstrap] init Keycloak failed', error));
+  }
 }
