@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {KeycloakService} from "keycloak-angular";
+import {KeycloakTokenParsed} from "keycloak-js";
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  profile: KeycloakTokenParsed;
 
-  ngOnInit() {
+  constructor(protected keycloakService: KeycloakService) {
   }
 
+  ngOnInit() {
+    this.profile = this.keycloakService.getKeycloakInstance().tokenParsed;
+    console.log(this.keycloakService.getKeycloakInstance().tokenParsed);
+
+  }
+
+  public logout() {
+    this.keycloakService.getKeycloakInstance().logout();
+  }
+
+  public acc() {
+    this.keycloakService.getKeycloakInstance().accountManagement()
+  }
 }

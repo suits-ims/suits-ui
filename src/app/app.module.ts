@@ -1,35 +1,19 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {ApplicationRef, DoBootstrap, NgModule} from '@angular/core';
+import {DoBootstrap, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RouterModule, Routes} from '@angular/router';
+import {RouterModule} from '@angular/router';
 import {CoreModule} from "./core/core.module";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatListModule} from "@angular/material/list";
 import {CandidatesModule} from "./modules/candidates/candidates.module";
-import {CandidateListComponent} from "./modules/candidates/candidate-list/candidate-list.component";
-import {StubComponent} from "./core/stub/stub.component";
-import {CandidateInfoComponent} from "./modules/candidates/candidate-info/candidate-info.component";
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
+import {environment} from "../environments/environment";
+import {AppRoutes} from "./app.routes";
 
 const keycloakService = new KeycloakService();
-
-const appRoutes: Routes = [
-  {
-    path: 'candidates',
-    component: CandidateListComponent,
-    data: {roles: ['manager']},
-    children: [
-      {path: '', redirectTo: 'overview', pathMatch: 'full'},
-      {path: 'overview', component: StubComponent},
-      {path: ':id', component: CandidateInfoComponent}
-    ]
-  },
-  {path: '**', component: StubComponent}
-];
-
 
 @NgModule({
   declarations: [
@@ -45,7 +29,7 @@ const appRoutes: Routes = [
     CandidatesModule,
     KeycloakAngularModule,
     RouterModule.forRoot(
-      appRoutes,
+      AppRoutes,
       {enableTracing: true}
     )
   ],
@@ -54,21 +38,19 @@ const appRoutes: Routes = [
       provide: KeycloakService,
       useValue: keycloakService
     }
-  ]
-  // bootstrap: [AppComponent]
+  ],
+  entryComponents: [AppComponent]
 })
 export class AppModule implements DoBootstrap {
 
-  ngDoBootstrap(appRef: ApplicationRef) {
-    console.log('[ngDoBootstrap] bootstrap app');
+  async ngDoBootstrap(app) {
+    const {keycloakConfig} = environment;
 
-    keycloakService
-      .init()
-      .then(() => {
-        console.log('[ngDoBootstrap] bootstrap app');
-
-        appRef.bootstrap(AppComponent);
-      })
-      .catch(error => console.error('[ngDoBootstrap] init Keycloak failed', error));
+    try {
+      await keycloakService.init({config: keycloakConfig});
+      app.bootstrap(AppComponent);
+    } catch (error) {
+      console.error('Keycloak init failed', error);
+    }
   }
 }
