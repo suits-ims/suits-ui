@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Candidate} from "../../../shared/models/candidate";
+import {CandidateService} from "../../../shared/services";
 
 @Component({
   selector: 'app-candidate-list',
@@ -25,7 +26,8 @@ export class CandidateListComponent implements OnInit {
     },
   ];
 
-  constructor() {
+  constructor(private candidateService: CandidateService) {
+    candidateService.getCandidates().subscribe(value => console.log('kek', value), error => console.log('error', error));
   }
 
   ngOnInit() {

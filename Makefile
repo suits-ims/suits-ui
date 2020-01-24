@@ -37,3 +37,10 @@ deploy:
 	${HEROKU} container:release ${HEROKU_PROCESS_TYPE} -a ${HEROKU_APP_NAME}
 
 .PHONY: image deploy
+
+clean-docker: DOCKER_COMPOSE_FILES := $(sort $(wildcard ./docker/docker-compose*.yml))
+clean-docker: DOCKER_COMPOSE_FILES := $(patsubst %.yml,-f %.yml, ${DOCKER_COMPOSE_FILES})
+clean-docker:
+	${DOCKER_COMPOSE} ${DOCKER_COMPOSE_FILES} stop
+	${DOCKER_COMPOSE} ${DOCKER_COMPOSE_FILES} rm --force -v
+.PHONY: clean-docker

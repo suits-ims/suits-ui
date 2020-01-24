@@ -12,6 +12,7 @@ import {CandidatesModule} from "./modules/candidates/candidates.module";
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {environment} from "../environments/environment";
 import {AppRoutes} from "./app.routes";
+import { HttpClientModule } from '@angular/common/http';
 
 const keycloakService = new KeycloakService();
 
@@ -28,6 +29,7 @@ const keycloakService = new KeycloakService();
     MatListModule,
     CandidatesModule,
     KeycloakAngularModule,
+    HttpClientModule,
     RouterModule.forRoot(
       AppRoutes,
       {enableTracing: true}
