@@ -1,14 +1,14 @@
 import {NgModule} from '@angular/core';
+import {HeaderComponent, SidebarComponent, StubComponent} from '.';
+import {CandidatesModule} from "../modules/candidates/candidates.module";
 import {CommonModule} from '@angular/common';
-import {HeaderComponent} from './header/header.component';
-import {SidebarComponent} from './sidebar/sidebar.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
-import {CandidatesModule} from "../modules/candidates/candidates.module";
-import {StubComponent} from './stub/stub.component';
 import {RouterModule} from "@angular/router";
 import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from "@angular/material/menu";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -24,7 +24,9 @@ import {MatIconModule} from '@angular/material/icon';
     MatListModule,
     CandidatesModule,
     RouterModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule,
+    MatButtonModule
   ],
   exports: [
     SidebarComponent,

@@ -1,5 +1,24 @@
-<mat-toolbar>
+<mat-toolbar color="primary">
   <mat-toolbar-row>
     <span>Suits</span>
+    <span class="header-spacer"></span>
+
+    <button mat-button [matMenuTriggerFor]="menu">
+      <div class="profile-info">
+        <img class="header-user-icon" src="{{profile.picture || 'assets/images/no_pic_found.jpg'}}"
+             alt="User picture"/>
+        <div *ngIf="profile">{{profile.name || 'Username not found'}}</div>
+        <div *ngIf="!profile">Log In</div>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </div>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
   </mat-toolbar-row>
+
 </mat-toolbar>

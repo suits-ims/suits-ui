@@ -5,3 +5,8 @@
   left: 0;
   right: 0;
 }
+
+.sidebar {
+  width: auto;
+  min-width: 300px;
+}

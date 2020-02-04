@@ -1,0 +1,31 @@
+version: '3.5'
+
+services:
+  suits-auth:
+    image: suitsims/suits-auth:1.0.0
+    ports:
+      - 8081:8080
+    environment:
+      - PORT=8080
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - DB_VENDOR=postgres
+      - DB_USER=admin
+      - DB_PASSWORD=admin
+      - DB_ADDR=suits-auth-db
+      - DB_PORT=5432
+      - DB_DATABASE=suitsauthdb
+      - PROXY_ADDRESS_FORWARDING=true
+
+  suits-auth-db:
+    image: postgres:11
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: suitsauthdb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+
