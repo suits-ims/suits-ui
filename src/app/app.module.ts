@@ -12,7 +12,8 @@ import {CandidatesModule} from "./modules/candidates/candidates.module";
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {environment} from "../environments/environment";
 import {AppRoutes} from "./app.routes";
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
+import {AngularMaterialModule} from "./angular-material.module";
 
 const keycloakService = new KeycloakService();
 
@@ -22,7 +23,6 @@ const keycloakService = new KeycloakService();
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     CoreModule,
     MatSidenavModule,
     MatToolbarModule,
@@ -30,6 +30,8 @@ const keycloakService = new KeycloakService();
     CandidatesModule,
     KeycloakAngularModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule,
     RouterModule.forRoot(
       AppRoutes,
       {enableTracing: true}

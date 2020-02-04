@@ -1,5 +1,5 @@
 export class Candidate {
-  public id: number;
+  public candidateId: number;
   public firstName: string;
   public lastName: string;
   public photoUrl: string;

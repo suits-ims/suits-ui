@@ -14,7 +14,7 @@ export const AppRoutes: Routes = [
       {path: '', redirectTo: 'overview', pathMatch: 'full'},
       {path: 'overview', component: StubComponent},
       {path: ':id', component: CandidateInfoComponent}
-    ]
+    ],
   },
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: StubComponent, canActivate: [AuthenticationGuardService]}

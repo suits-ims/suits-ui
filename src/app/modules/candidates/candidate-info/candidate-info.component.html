@@ -1,8 +1,9 @@
 <div class="info-header">
-  <img src="https://avatars3.githubusercontent.com/u/22153744?s=400&u=5a3db2d59c76f9de0f8dca2a737b40138e88ff02&v=4"
-       class="info-header-avatar">
+
+  <img src="{{candidate.photoUrl || 'assets/images/no_pic_found.jpg'}}" class="info-header-avatar">
+
   <div class="info-header-text">
-    <div>Siarhei Blashuk</div>
+    <div>{{candidate.firstName || 'Name'}} {{candidate.lastName}}</div>
     <div class="header-title">Java Software Engineer</div>
   </div>
 
@@ -10,4 +11,5 @@
 <mat-tab-group>
   <mat-tab label="About">About content</mat-tab>
   <mat-tab label="History">History content</mat-tab>
+  <mat-tab label="Comments">History content</mat-tab>
 </mat-tab-group>

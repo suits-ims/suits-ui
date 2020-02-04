@@ -23,8 +23,4 @@ export class HeaderComponent implements OnInit {
   public logout() {
     this.keycloakService.getKeycloakInstance().logout();
   }
-
-  public acc() {
-    this.keycloakService.getKeycloakInstance().accountManagement()
-  }
 }

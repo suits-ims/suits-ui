@@ -12,7 +12,7 @@ const keycloakConfig: KeycloakConfig = {
 export const environment = {
   production: false,
   keycloakConfig,
-  suitsApiUrl: "http://172.17.0.1:8080"
+  suitsApiUrl: "http://localhost:8080"
 };
 
 /*
