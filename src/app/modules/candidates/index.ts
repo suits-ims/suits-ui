@@ -1,0 +1,5 @@
+export * from './candidate-new/candidate-new.component'
+export * from './candidate-info/candidate-info.component'
+export * from './candidate-list/candidate-list.component'
+export * from './candidate-list-item/candidate-list-item.component'
+export * from './candidate-list-menu-item/candidate-list-menu-item.component'

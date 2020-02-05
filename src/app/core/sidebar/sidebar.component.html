@@ -5,7 +5,7 @@
         <mat-icon mat-list-icon>home</mat-icon>
         <h4 mat-line>Home</h4>
       </mat-list-item>
-      <mat-list-item routerLink="/candidates">
+      <mat-list-item routerLink="/candidates" [queryParams]="{sortCandidates: 'lastName'}">
         <mat-icon mat-list-icon>people</mat-icon>
         <h4 mat-line>Candidates</h4>
       </mat-list-item>
