@@ -1,0 +1,23 @@
+<form class="new-candidate-form" [formGroup]="newCandidate">
+  <div class="form-text">New Candidate</div>
+  <mat-form-field>
+    <input matInput formControlName="firstName" placeholder="First name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="lastName" placeholder="Last name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="email" placeholder="Email">
+    <mat-error *ngIf="fields.email.hasError('email') && !fields.email.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="fields.email.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <div class="form-control">
+    <a mat-raised-button color="primary" (click)="onSubmit(newCandidate.value)">Add</a>
+  </div>
+
+</form>

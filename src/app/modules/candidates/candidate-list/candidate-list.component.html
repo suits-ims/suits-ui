@@ -1,8 +1,14 @@
 <mat-sidenav-container class="candidate-list-container">
   <mat-sidenav mode="side" class="sidebar" opened>
-    <mat-nav-list>
-      <app-candidate-list-item *ngFor="let candidate of candidates" [candidate]="candidate"></app-candidate-list-item>
-    </mat-nav-list>
+    <div class="main-container">
+      <app-candidate-list-menu-item></app-candidate-list-menu-item>
+      <div class="scrollable-area-container">
+        <mat-nav-list class="scrollable">
+          <app-candidate-list-item *ngFor="let candidate of candidates"
+                                   [candidate]="candidate"></app-candidate-list-item>
+        </mat-nav-list>
+      </div>
+    </div>
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet></router-outlet>

@@ -1,8 +1,7 @@
 import {Routes} from '@angular/router';
-import {CandidateListComponent} from "./modules/candidates/candidate-list/candidate-list.component";
+import {CandidateInfoComponent, CandidateListComponent, CandidateNewComponent} from "./modules/candidates";
 import {AuthenticationGuardService} from "./shared/services";
 import {StubComponent} from "./core";
-import {CandidateInfoComponent} from "./modules/candidates/candidate-info/candidate-info.component";
 
 export const AppRoutes: Routes = [
   {
@@ -13,6 +12,7 @@ export const AppRoutes: Routes = [
     children: [
       {path: '', redirectTo: 'overview', pathMatch: 'full'},
       {path: 'overview', component: StubComponent},
+      {path: 'new', component: CandidateNewComponent},
       {path: ':id', component: CandidateInfoComponent}
     ],
   },

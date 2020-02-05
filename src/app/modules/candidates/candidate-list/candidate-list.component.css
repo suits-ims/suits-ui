@@ -10,3 +10,31 @@
   width: auto;
   min-width: 300px;
 }
+
+.candidate-menu {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+}
+
+.main-container {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.scrollable-area-container {
+  position: absolute;
+  bottom: 0;
+  top: 60px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.scrollable {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}

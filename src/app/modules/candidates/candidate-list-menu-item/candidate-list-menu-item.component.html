@@ -1,0 +1,24 @@
+<div class="menu-container mat-app-background">
+  <button mat-button routerLink="new">
+    <div class="menu-button">
+      <mat-icon>add</mat-icon>
+      <div>Add</div>
+    </div>
+  </button>
+
+  <button mat-button [matMenuTriggerFor]="menu">
+    <div class="menu-button">
+      <div>Filter</div>
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </div>
+  </button>
+</div>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="/candidates" [queryParams]="{sortCandidates: 'firstName'}">
+    <span>Name</span>
+  </button>
+  <button mat-menu-item routerLink="/candidates" [queryParams]="{sortCandidates: 'lastName'}">
+    <span>Surname</span>
+  </button>
+</mat-menu>

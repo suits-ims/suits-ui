@@ -22,4 +22,9 @@ export class CandidateService {
   getCandidate(id: Number): Observable<Candidate> {
     return this.http.get<Candidate>(this.suitsApiUrl + '/candidates/' + id);
   }
+
+  addCandidate(candidate): Observable<number> {
+    console.log('Candidate data submitted', candidate);
+    return this.http.post<number>(this.suitsApiUrl + '/candidates', candidate);
+  }
 }
