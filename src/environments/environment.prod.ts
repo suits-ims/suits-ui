@@ -9,5 +9,5 @@ const keycloakConfig: KeycloakConfig = {
 export const environment = {
   production: true,
   keycloakConfig,
-  suitsApiUrl: "https://suits-api.herokuapp.com/"
+  suitsApiUrl: "https://suits-api.herokuapp.com"
 };
